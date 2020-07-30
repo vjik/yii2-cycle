@@ -129,7 +129,7 @@ class SchemaAction extends Action
             $this->controller->stdout($field, Console::FG_GREEN);
             if ($typecast !== null) {
                 $this->controller->stdout(' -> ');
-                $this->controller->stdout($typecast, Console::FG_BLUE);
+                $this->controller->stdout(implode('::', (array)$typecast), Console::FG_BLUE);
             }
             $this->controller->stdout(PHP_EOL);
         }
