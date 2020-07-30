@@ -123,9 +123,6 @@ class SchemaAction extends Action
         $types = $schema->define($role, Schema::TYPECAST);
         foreach ($columns as $property => $field) {
             $typecast = $types[$property] ?? $types[$field] ?? null;
-            if (is_array($typecast)) {
-                $typecast = implode('::', $typecast);
-            }
             $this->controller->stdout('     ');
             $this->controller->stdout($property, Console::FG_CYAN);
             $this->controller->stdout(' -> ');
