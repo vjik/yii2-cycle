@@ -1,0 +1,49 @@
+{
+    "name": "vjik/yii2-cycle",
+    "type": "library",
+    "description": "Cycle ORM support",
+    "keywords": [
+        "yii2",
+        "cycle",
+        "orm"
+    ],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/vjik/yii2-cycle/issues",
+        "source": "https://github.com/vjik/yii2-cycle"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.2",
+        "cycle/annotated": "^2.0",
+        "cycle/orm": "^1.2",
+        "yiisoft/yii2": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vjik\\Yii2\\Cycle\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Vjik\\Yii2\\Cycle\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": [
+            "phpunit --colors=always"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}
