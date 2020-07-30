@@ -15,6 +15,13 @@ return [
         ],
 
         /**
+         * Config for {@see \Vjik\Yii2\Cycle\Factory\OrmFactory}
+         * Null, classname or {@see PromiseFactoryInterface} object.
+         * @link https://github.com/cycle/docs/blob/master/advanced/promise.md
+         */
+        'orm-promise-factory' => null,
+
+        /**
          * SchemaProvider list for {@see \Vjik\Yii2\Cycle\Schema\SchemaManager}
          * Array of classname and {@see SchemaProviderInterface} object.
          * You can configure providers if you pass classname as key and parameters as array:

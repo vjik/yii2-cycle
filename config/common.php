@@ -2,10 +2,15 @@
 
 declare(strict_types=1);
 
+use Cycle\ORM\Factory;
+use Cycle\ORM\FactoryInterface;
+use Cycle\ORM\ORMInterface;
 use Cycle\ORM\Schema;
 use Cycle\ORM\SchemaInterface;
 use Spiral\Database\DatabaseManager;
+use Vjik\Yii2\Cycle\ContainerProxy;
 use Vjik\Yii2\Cycle\Factory\DbalFactory;
+use Vjik\Yii2\Cycle\Factory\OrmFactory;
 use Vjik\Yii2\Cycle\Schema\Conveyor\AnnotatedSchemaConveyor;
 use Vjik\Yii2\Cycle\Schema\SchemaConveyorInterface;
 use Vjik\Yii2\Cycle\Schema\SchemaManager;
@@ -15,6 +20,16 @@ return [
     // Cycle DBAL
     DatabaseManager::class => static function ($container, $p, $c) {
         return (new DbalFactory(Yii::$app->params['vjik/yii2-cycle']['dbal']))();
+    },
+
+    // Cycle ORM
+    ORMInterface::class => static function ($container, $p, $c) {
+        return (new OrmFactory(Yii::$app->params['vjik/yii2-cycle']['orm-promise-factory']))();
+    },
+
+    // Factory for Cycle ORM
+    FactoryInterface::class => static function ($container, $p, $c) {
+        return new Factory($container->get(DatabaseManager::class), null, null, new ContainerProxy());
     },
 
     // Schema Manager
