@@ -1,6 +1,6 @@
 <?php
 
-namespace Vjik\Yii2\Cycle\Console\Action;
+namespace Vjik\Yii2\Cycle\Console\Action\Common;
 
 use Cycle\ORM\Relation;
 use Cycle\ORM\Schema;

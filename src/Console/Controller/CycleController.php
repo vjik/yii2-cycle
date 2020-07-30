@@ -2,9 +2,9 @@
 
 namespace Vjik\Yii2\Cycle\Console\Controller;
 
-use Vjik\Yii2\Cycle\Console\Action\SchemaAction;
-use Vjik\Yii2\Cycle\Console\Action\SchemaClearAction;
-use Vjik\Yii2\Cycle\Console\Action\SchemaPhpAction;
+use Vjik\Yii2\Cycle\Console\Action\Common\SchemaAction;
+use Vjik\Yii2\Cycle\Console\Action\Common\SchemaClearAction;
+use Vjik\Yii2\Cycle\Console\Action\Common\SchemaPhpAction;
 use yii\console\Controller;
 
 class CycleController extends Controller
