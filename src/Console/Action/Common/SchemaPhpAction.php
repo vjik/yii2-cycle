@@ -13,9 +13,21 @@ use yii\helpers\Console;
 class SchemaPhpAction extends Action
 {
 
+    protected $schema;
+
+    public function __construct(
+        $id,
+        $controller,
+        SchemaInterface $schema,
+        $config = []
+    ) {
+        $this->schema = $schema;
+        parent::__construct($id, $controller, $config);
+    }
+
     public function run(?string $file = null)
     {
-        $content = (new SchemaToPHP(Yii::$container->get(SchemaInterface::class)))->render();
+        $content = (new SchemaToPHP($this->schema))->render();
         if ($file) {
             $file = Yii::getAlias($file);
             $this->controller->stdout('Destination: ');

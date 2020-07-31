@@ -5,13 +5,24 @@ namespace Vjik\Yii2\Cycle\Console\Action\Common;
 use Cycle\ORM\Relation;
 use Cycle\ORM\Schema;
 use Cycle\ORM\SchemaInterface;
-use Yii;
 use yii\base\Action;
 use yii\console\ExitCode;
 use yii\helpers\Console;
 
 class SchemaAction extends Action
 {
+
+    protected $schema;
+
+    public function __construct(
+        $id,
+        $controller,
+        SchemaInterface $schema,
+        $config = []
+    ) {
+        $this->schema = $schema;
+        parent::__construct($id, $controller, $config);
+    }
 
     private const STR_RELATION = [
         Relation::HAS_ONE => 'has one',
@@ -32,11 +43,10 @@ class SchemaAction extends Action
     public function run(?string $role = null)
     {
         $result = true;
-        $schema = Yii::$container->get(SchemaInterface::class);
-        $roles = $role !== null ? explode(',', $role) : $schema->getRoles();
+        $roles = $role !== null ? explode(',', $role) : $this->schema->getRoles();
 
         foreach ($roles as $roleName) {
-            $result = $this->displaySchema($schema, $roleName) && $result;
+            $result = $this->displaySchema($this->schema, $roleName) && $result;
         }
 
         return $result ? ExitCode::OK : ExitCode::UNSPECIFIED_ERROR;
