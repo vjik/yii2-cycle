@@ -14,7 +14,7 @@ composer require vjik/yii2-cycle
 
 ```php
 'container' => [
-    'definitions' => ArrayHelper::merge(
+    'singletons' => ArrayHelper::merge(
         require __DIR__ . '/../../vendor/vjik/yii2-cycle/config/common.php',
         [],
     ),
