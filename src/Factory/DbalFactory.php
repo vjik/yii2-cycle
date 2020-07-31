@@ -2,6 +2,7 @@
 
 namespace Vjik\Yii2\Cycle\Factory;
 
+use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Spiral\Database\Config\DatabaseConfig;
 use Spiral\Database\DatabaseManager;
@@ -28,14 +29,14 @@ final class DbalFactory
         $this->dbalConfig = $config;
     }
 
-    public function __invoke()
+    public function __invoke(ContainerInterface $container)
     {
         $conf = $this->prepareConfig($this->dbalConfig);
         $dbal = new DatabaseManager($conf);
 
         if ($this->logger !== null) {
             if (!$this->logger instanceof LoggerInterface) {
-                $this->logger = Yii::$container->get($this->logger);
+                $this->logger = $container->get($this->logger);
             }
             $dbal->setLogger($this->logger);
             /** Remove when issue is resolved @link https://github.com/cycle/orm/issues/60 */

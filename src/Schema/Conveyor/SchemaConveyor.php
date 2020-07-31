@@ -4,9 +4,9 @@ namespace Vjik\Yii2\Cycle\Schema\Conveyor;
 
 use Cycle\Schema\Generator;
 use Cycle\Schema\GeneratorInterface;
+use Psr\Container\ContainerInterface;
 use Vjik\Yii2\Cycle\Schema\Exception\BadGeneratorDeclarationException;
 use Vjik\Yii2\Cycle\Schema\SchemaConveyorInterface;
-use Yii;
 
 class SchemaConveyor implements SchemaConveyorInterface
 {
@@ -26,6 +26,13 @@ class SchemaConveyor implements SchemaConveyorInterface
         ],
     ];
 
+    protected $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     public function addGenerator(string $stage, $generator): void
     {
         $this->conveyor[$stage][] = $generator;
@@ -38,12 +45,12 @@ class SchemaConveyor implements SchemaConveyorInterface
             foreach ($group as $generatorDefinition) {
                 $generator = null;
                 if (is_string($generatorDefinition)) {
-                    $generator = Yii::$container->get($generatorDefinition);
+                    $generator = $this->container->get($generatorDefinition);
                 } elseif (is_object($generatorDefinition) && $generatorDefinition instanceof GeneratorInterface) {
                     $result[] = $generatorDefinition;
                     continue;
                 } elseif (is_object($generatorDefinition) && method_exists($generatorDefinition, '__invoke')) {
-                    $generator = $generatorDefinition();
+                    $generator = $generatorDefinition($this->container);
                 }
                 if ($generator instanceof GeneratorInterface) {
                     $result[] = $generator;

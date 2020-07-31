@@ -5,18 +5,21 @@ declare(strict_types=1);
 namespace Vjik\Yii2\Cycle\Schema;
 
 use Generator;
-use Yii;
+use Psr\Container\ContainerInterface;
 
 /**
  * SchemaManager allows reading schema from providers available and clearing the schema in providers.
  */
 final class SchemaManager
 {
+    private $container;
+
     /** @var string[]|SchemaProviderInterface[] */
     private $providers;
 
-    public function __construct(array $providers)
+    public function __construct(ContainerInterface $container, array $providers)
     {
+        $this->container = $container;
         $this->providers = $providers;
     }
 
@@ -76,11 +79,11 @@ final class SchemaManager
         foreach ($this->providers as $key => &$provider) {
             // Providers resolving
             if (is_string($provider)) {
-                $provider = Yii::$container->get($provider);
+                $provider = $this->container->get($provider);
             }
             // If Provider defined as ClassName => ConfigArray
             if (is_array($provider) && is_string($key)) {
-                $provider = Yii::$container->get($key)->withConfig($provider);
+                $provider = $this->container->get($key)->withConfig($provider);
             }
 
             if (!$provider instanceof SchemaProviderInterface) {

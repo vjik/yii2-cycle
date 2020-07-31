@@ -8,11 +8,11 @@ use Cycle\ORM\FactoryInterface;
 use Cycle\ORM\ORM;
 use Cycle\ORM\PromiseFactoryInterface;
 use Cycle\ORM\SchemaInterface;
-use Yii;
+use Psr\Container\ContainerInterface;
 
 final class OrmFactory
 {
-    /** @var null|PromiseFactoryInterface|string  */
+    /** @var null|PromiseFactoryInterface|string */
     private $promiseFactory = null;
 
     /**
@@ -24,17 +24,17 @@ final class OrmFactory
         $this->promiseFactory = $promiseFactory;
     }
 
-    public function __invoke()
+    public function __invoke(ContainerInterface $container)
     {
-        $schema = Yii::$container->get(SchemaInterface::class);
-        $factory = Yii::$container->get(FactoryInterface::class);
+        $schema = $container->get(SchemaInterface::class);
+        $factory = $container->get(FactoryInterface::class);
 
         $orm = new ORM($factory, $schema);
 
         // Promise factory
         if ($this->promiseFactory !== null) {
             if (!$this->promiseFactory instanceof PromiseFactoryInterface) {
-                $this->promiseFactory = Yii::$container->get($this->promiseFactory);
+                $this->promiseFactory = $container->get($this->promiseFactory);
             }
             $orm = $orm->withPromiseFactory($this->promiseFactory);
         }
