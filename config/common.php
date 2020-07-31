@@ -29,7 +29,7 @@ return [
 
     // Factory for Cycle ORM
     FactoryInterface::class => static function ($container, $p, $c) {
-        return new Factory($container->get(DatabaseManager::class), null, null, new ContainerProxy());
+        return new Factory($container->get(DatabaseManager::class), null, null, new ContainerProxy($container));
     },
 
     // Schema Manager
