@@ -4,7 +4,7 @@ namespace Vjik\Yii2\Cycle\Factory;
 
 use InvalidArgumentException;
 use Psr\Container\ContainerInterface;
-use Vjik\Yii2\Cycle\ContainerProxy;
+use Vjik\Yii2\Psr\ContainerProxy\ContainerProxy;
 use yii\di\Container;
 
 class ContainerFactory

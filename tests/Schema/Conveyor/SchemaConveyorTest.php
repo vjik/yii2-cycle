@@ -7,6 +7,8 @@ use PHPUnit\Framework\TestCase;
 use Vjik\Yii2\Cycle\Schema\Conveyor\SchemaConveyor;
 use Vjik\Yii2\Cycle\Schema\Exception\BadGeneratorDeclarationException;
 use Vjik\Yii2\Cycle\Tests\Schema\Conveyor\Stub\FakeGenerator;
+use Vjik\Yii2\Psr\ContainerProxy\ContainerProxy;
+use yii\di\Container;
 
 class SchemaConveyorTest extends TestCase
 {
@@ -134,6 +136,6 @@ class SchemaConveyorTest extends TestCase
 
     public function createConveyor(): SchemaConveyor
     {
-        return new SchemaConveyor();
+        return new SchemaConveyor(new ContainerProxy(new Container()));
     }
 }
