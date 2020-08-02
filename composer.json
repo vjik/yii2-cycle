@@ -1,13 +1,20 @@
 {
     "name": "vjik/yii2-cycle",
+    "description": "Yii2 Cycle ORM support",
+    "version": "0.1.0",
     "type": "library",
-    "description": "Cycle ORM support",
     "keywords": [
         "yii2",
         "cycle",
         "orm"
     ],
-    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergei Predvoditelev",
+            "email": "sergey.predvoditelev@gmail.com"
+        }
+    ],
+    "license": "BSD-3-Clause",
     "support": {
         "issues": "https://github.com/vjik/yii2-cycle/issues",
         "source": "https://github.com/vjik/yii2-cycle"
