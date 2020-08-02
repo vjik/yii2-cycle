@@ -2,7 +2,6 @@
 
 namespace Vjik\Yii2\Cycle\Factory;
 
-use Closure;
 use InvalidArgumentException;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
@@ -16,7 +15,7 @@ final class DbalFactory
     /** @var array|DatabaseConfig */
     private $dbalConfig;
 
-    /** @var null|string|Closure|LoggerInterface */
+    /** @var null|string|LoggerInterface */
     private $logger = null;
 
     /** @var null|ContainerInterface */
@@ -53,7 +52,7 @@ final class DbalFactory
     }
 
     /**
-     * @param string|Closure|LoggerInterface $logger
+     * @param string|LoggerInterface $logger
      * @return LoggerInterface
      * @throws InvalidArgumentException
      */
@@ -64,9 +63,6 @@ final class DbalFactory
         }
         if (is_string($logger)) {
             return $this->container->get($logger);
-        }
-        if (is_object($logger) && method_exists($logger, '__invoke')) {
-            return $logger($this->container);
         }
         throw new InvalidArgumentException('Invalid logger.');
     }

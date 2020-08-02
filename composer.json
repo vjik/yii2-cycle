@@ -1,7 +1,7 @@
 {
     "name": "vjik/yii2-cycle",
     "description": "Yii2 Cycle ORM support",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "type": "library",
     "keywords": [
         "yii2",
