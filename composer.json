@@ -23,6 +23,9 @@
     "require-dev": {
         "phpunit/phpunit": "^8.5"
     },
+    "suggest": {
+        "vjik/yii2-cycle-debug": "Panel \"Cycle ORM\" for Yii2 Debug"
+    },
     "autoload": {
         "psr-4": {
             "Vjik\\Yii2\\Cycle\\": "src"
