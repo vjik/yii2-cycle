@@ -16,7 +16,7 @@ composer require vjik/yii2-cycle
 'container' => [
     'singletons' => ArrayHelper::merge(
         require __DIR__ . '/../../vendor/vjik/yii2-cycle/config/common.php',
-        [],
+        []
     ),
 ],
 ```
@@ -40,7 +40,7 @@ return ArrayHelper::merge(
                 'connections' => [
                     'mysql' => [
                         'driver' => \Spiral\Database\Driver\MySQL\MySQLDriver::class,
-                        'connection' => 'mysql:host=localhost;dbname=sdcorp',
+                        'connection' => 'mysql:host=localhost;dbname=yii2demo',
                         'username' => 'root',
                         'password' => 'root',
                     ]
@@ -59,7 +59,7 @@ return ArrayHelper::merge(
                 '@domain/news',
             ],
         ],
-    ],
+    ]
 );
 
 ```
