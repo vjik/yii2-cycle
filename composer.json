@@ -17,7 +17,7 @@
         "php": "^7.2",
         "cycle/annotated": "^2.0",
         "cycle/orm": "^1.2",
-        "vjik/yii2-psr-container-proxy": "@dev",
+        "vjik/yii2-psr-container-proxy": "^1.0",
         "yiisoft/yii2": "^2.0"
     },
     "require-dev": {
