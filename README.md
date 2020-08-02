@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
+    <img src="https://avatars0.githubusercontent.com/u/47758579" height="100px">
     <h1 align="center">Yii2 Cycle ORM support</h1>
     <br>
 </p>
