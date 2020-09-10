@@ -8,7 +8,7 @@ use Closure;
 use Cycle\Schema\Compiler;
 use Cycle\Schema\GeneratorInterface;
 use Cycle\Schema\Registry;
-use Spiral\Database\DatabaseManager;
+use Spiral\Database\DatabaseProviderInterface;
 use Vjik\Yii2\Cycle\Schema\SchemaConveyorInterface;
 use Vjik\Yii2\Cycle\Schema\SchemaProviderInterface;
 
@@ -21,7 +21,7 @@ class FromConveyorSchemaProvider implements SchemaProviderInterface
     private $conveyor;
 
     /**
-     * @var DatabaseManager
+     * @var DatabaseProviderInterface
      */
     private $dbal;
 
@@ -31,7 +31,7 @@ class FromConveyorSchemaProvider implements SchemaProviderInterface
      */
     private $generators = [];
 
-    public function __construct(SchemaConveyorInterface $conveyor, DatabaseManager $dbal)
+    public function __construct(SchemaConveyorInterface $conveyor, DatabaseProviderInterface $dbal)
     {
         $this->conveyor = $conveyor;
         $this->dbal = $dbal;

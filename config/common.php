@@ -8,6 +8,7 @@ use Cycle\ORM\ORMInterface;
 use Cycle\ORM\Schema;
 use Cycle\ORM\SchemaInterface;
 use Spiral\Database\DatabaseManager;
+use Spiral\Database\DatabaseProviderInterface;
 use Vjik\Yii2\Cycle\Factory\ContainerFactory;
 use Vjik\Yii2\Cycle\Factory\CycleDynamicFactory;
 use Vjik\Yii2\Cycle\Factory\DbalFactory;
@@ -21,6 +22,9 @@ return [
     // Cycle DBAL
     DatabaseManager::class => static function ($container) {
         return (new DbalFactory(Yii::$app->params['vjik/yii2-cycle']['dbal']))(ContainerFactory::make($container));
+    },
+    DatabaseProviderInterface::class => static function ($container) {
+        return $container->get(DatabaseManager::class);
     },
 
     // Cycle ORM
