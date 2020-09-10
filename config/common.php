@@ -9,6 +9,7 @@ use Cycle\ORM\Schema;
 use Cycle\ORM\SchemaInterface;
 use Spiral\Database\DatabaseManager;
 use Vjik\Yii2\Cycle\Factory\ContainerFactory;
+use Vjik\Yii2\Cycle\Factory\CycleDynamicFactory;
 use Vjik\Yii2\Cycle\Factory\DbalFactory;
 use Vjik\Yii2\Cycle\Factory\OrmFactory;
 use Vjik\Yii2\Cycle\Schema\Conveyor\AnnotatedSchemaConveyor;
@@ -29,7 +30,12 @@ return [
 
     // Factory for Cycle ORM
     FactoryInterface::class => static function ($container) {
-        return new Factory($container->get(DatabaseManager::class), null, null, ContainerFactory::make($container));
+        return new Factory(
+            $container->get(DatabaseManager::class),
+            null,
+            new CycleDynamicFactory($container),
+            ContainerFactory::make($container)
+        );
     },
 
     // Schema Manager
