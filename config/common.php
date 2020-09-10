@@ -21,7 +21,9 @@ return [
 
     // Cycle DBAL
     DatabaseManager::class => static function ($container) {
-        return (new DbalFactory(Yii::$app->params['vjik/yii2-cycle']['dbal']))(ContainerFactory::make($container));
+        return (new DbalFactory(
+            Yii::$app->params['vjik/yii2-cycle']['dbal']
+        ))(ContainerFactory::make($container));
     },
     DatabaseProviderInterface::class => static function ($container) {
         return $container->get(DatabaseManager::class);
@@ -29,7 +31,9 @@ return [
 
     // Cycle ORM
     ORMInterface::class => static function ($container) {
-        return (new OrmFactory(Yii::$app->params['vjik/yii2-cycle']['orm-promise-factory']))(ContainerFactory::make($container));
+        return (new OrmFactory(
+            Yii::$app->params['vjik/yii2-cycle']['orm-promise-factory']
+        ))(ContainerFactory::make($container));
     },
 
     // Factory for Cycle ORM
@@ -44,7 +48,10 @@ return [
 
     // Schema Manager
     SchemaManager::class => static function ($container) {
-        return new SchemaManager(ContainerFactory::make($container), Yii::$app->params['vjik/yii2-cycle']['schema-providers']);
+        return new SchemaManager(
+            ContainerFactory::make($container),
+            Yii::$app->params['vjik/yii2-cycle']['schema-providers']
+        );
     },
 
     // Schema
