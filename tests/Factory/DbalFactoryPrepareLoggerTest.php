@@ -1,13 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vjik\Yii2\Cycle\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Container\NotFoundExceptionInterface;
+use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use RuntimeException;
 use stdClass;
 use Vjik\Yii2\Cycle\Factory\DbalFactory;
 use Vjik\Yii2\Cycle\Tests\Factory\Stub\FakeContainer;
 use Vjik\Yii2\Cycle\Tests\Factory\Stub\FakeDriver;
+use yii\base\BaseObject;
 
 class DbalFactoryPrepareLoggerTest extends TestCase
 {
@@ -19,7 +25,11 @@ class DbalFactoryPrepareLoggerTest extends TestCase
         $this->container = new FakeContainer($this);
     }
 
-    protected function prepareLogger($logger)
+    /**
+     * @param string|LoggerInterface $logger Classname or object
+     * @return null|LoggerInterface
+     */
+    protected function prepareLoggerFromDbalFactory($logger): ?LoggerInterface
     {
         $factory = (new DbalFactory([
             'query-logger' => $logger,
@@ -40,19 +50,32 @@ class DbalFactoryPrepareLoggerTest extends TestCase
         return $factory->driver('fake')->getLogger();
     }
 
-    public function testString(): void
+    public function testLoggerDefinitionAsStringDefinition(): void
     {
-        $this->assertInstanceOf(NullLogger::class, $this->prepareLogger(NullLogger::class));
+        $this->assertInstanceOf(NullLogger::class, $this->prepareLoggerFromDbalFactory(NullLogger::class));
     }
 
-    public function testLoggerInterface(): void
+    public function testLoggerDefinitionAsObject(): void
     {
-        $this->assertInstanceOf(NullLogger::class, $this->prepareLogger(new NullLogger()));
+        $this->assertInstanceOf(NullLogger::class, $this->prepareLoggerFromDbalFactory(new NullLogger()));
     }
 
-    public function testInvalid(): void
+    public function testLoggerDefinitionAsInvalidDefinition(): void
     {
-        $this->expectExceptionMessage('Invalid logger.');
-        $this->prepareLogger(new stdClass());
+        $this->expectException(NotFoundExceptionInterface::class);
+        $this->prepareLoggerFromDbalFactory('invalid');
+    }
+
+    public function testLoggerDefinitionAsInvalidClassName(): void
+    {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Logger definition should be subclass of Psr\Log\LoggerInterface');
+        $this->prepareLoggerFromDbalFactory(BaseObject::class);
+    }
+
+    public function testLoggerDefinitionAsInvalidObject(): void
+    {
+        $this->expectExceptionMessage('Logger definition should be subclass of Psr\Log\LoggerInterface.');
+        $this->prepareLoggerFromDbalFactory(new stdClass());
     }
 }
