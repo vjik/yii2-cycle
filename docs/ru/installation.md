@@ -53,6 +53,7 @@ return ArrayHelper::merge(
                     // Пример настроек подключения к MySQL:
                     'mysql' => [
                         'driver' => \Spiral\Database\Driver\MySQL\MySQLDriver::class,
+                        // Синтаксис подключения описан в https://www.php.net/manual/ru/pdo.construct.php, смотрите DSN
                         'connection' => 'mysql:host=localhost;dbname=yii2demo',
                         'username' => 'root',
                         'password' => 'root',
