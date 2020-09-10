@@ -22,7 +22,10 @@ class DbalFactoryPrepareLoggerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->container = new FakeContainer($this);
+        $this->container = new FakeContainer([
+            NullLogger::class => new NullLogger(),
+            BaseObject::class => new BaseObject(),
+        ]);
     }
 
     /**

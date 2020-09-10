@@ -5,7 +5,7 @@ namespace Vjik\Yii2\Cycle\Schema\Conveyor;
 use Cycle\Schema\Generator;
 use Cycle\Schema\GeneratorInterface;
 use Psr\Container\ContainerInterface;
-use Vjik\Yii2\Cycle\Schema\Exception\BadGeneratorDeclarationException;
+use Vjik\Yii2\Cycle\Exception\BadGeneratorDeclarationException;
 use Vjik\Yii2\Cycle\Schema\SchemaConveyorInterface;
 
 class SchemaConveyor implements SchemaConveyorInterface
@@ -56,7 +56,7 @@ class SchemaConveyor implements SchemaConveyorInterface
                     $result[] = $generator;
                     continue;
                 }
-                throw new BadGeneratorDeclarationException();
+                throw new BadGeneratorDeclarationException($generator ?? $generatorDefinition);
             }
         }
         return $result;

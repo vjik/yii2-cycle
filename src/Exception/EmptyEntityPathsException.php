@@ -1,6 +1,6 @@
 <?php
 
-namespace Vjik\Yii2\Cycle\Schema\Exception;
+namespace Vjik\Yii2\Cycle\Exception;
 
 use yii\base\Exception;
 

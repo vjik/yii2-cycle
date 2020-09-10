@@ -9,6 +9,7 @@ use Cycle\ORM\Schema;
 use Cycle\ORM\SchemaInterface;
 use Spiral\Database\DatabaseManager;
 use Spiral\Database\DatabaseProviderInterface;
+use Vjik\Yii2\Cycle\Exception\SchemaWasNotProvidedException;
 use Vjik\Yii2\Cycle\Factory\ContainerFactory;
 use Vjik\Yii2\Cycle\Factory\CycleDynamicFactory;
 use Vjik\Yii2\Cycle\Factory\DbalFactory;
@@ -58,7 +59,7 @@ return [
     SchemaInterface::class => static function ($container) {
         $schema = $container->get(SchemaManager::class)->read();
         if ($schema === null) {
-            throw new RuntimeException('Cycle Schema not read.');
+            throw new SchemaWasNotProvidedException();
         }
         return new Schema($schema);
     },

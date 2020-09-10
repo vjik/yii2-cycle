@@ -9,7 +9,7 @@ use Cycle\Annotated\MergeIndexes;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Spiral\Tokenizer\ClassLocator;
 use Symfony\Component\Finder\Finder;
-use Vjik\Yii2\Cycle\Schema\Exception\EmptyEntityPathsException;
+use Vjik\Yii2\Cycle\Exception\EmptyEntityPathsException;
 use Yii;
 
 final class AnnotatedSchemaConveyor extends SchemaConveyor

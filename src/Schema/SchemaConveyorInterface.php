@@ -6,7 +6,7 @@ namespace Vjik\Yii2\Cycle\Schema;
 
 use Closure;
 use Cycle\Schema\GeneratorInterface;
-use Vjik\Yii2\Cycle\Schema\Exception\BadGeneratorDeclarationException;
+use Vjik\Yii2\Cycle\Exception\BadGeneratorDeclarationException;
 
 interface SchemaConveyorInterface
 {

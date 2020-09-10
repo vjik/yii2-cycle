@@ -4,30 +4,47 @@ declare(strict_types=1);
 
 namespace Vjik\Yii2\Cycle\Tests\Factory\Stub;
 
-use PHPUnit\Framework\TestCase;
+use Closure;
 use Psr\Container\ContainerInterface;
 use Vjik\Yii2\Psr\ContainerProxy\NotFoundException;
 
 class FakeContainer implements ContainerInterface
 {
 
-    private $testCase;
+    private $definitions;
+    private $factory;
 
-    public function __construct(TestCase $testCase)
+    /**
+     * @param array $definitions
+     * @param null|Closure $factory Should be closure that works like ContainerInterface::get(string $id): mixed
+     */
+    public function __construct(array $definitions = [], Closure $factory = null)
     {
-        $this->testCase = $testCase;
+        $this->definitions = $definitions;
+        $this->factory = $factory ??
+            static function (string $id) {
+                throw new NotFoundException($id);
+            };
     }
 
     public function get($id)
     {
-        if ($id === 'invalid') {
-            throw new NotFoundException();
+        if (!array_key_exists($id, $this->definitions)) {
+            $this->definitions[$id] = ($this->factory)($id); // @phan-suppress-current-line PhanTypeVoidAssignment
         }
-        return $this->testCase->getMockBuilder($id)->getMock();
+        return $this->definitions[$id];
     }
 
     public function has($id)
     {
-        return true;
+        if (array_key_exists($id, $this->definitions)) {
+            return true;
+        }
+        try {
+            $this->get($id);
+            return true;
+        } catch (\Throwable $e) { // @phan-suppress-current-line PhanUnusedVariableCaughtException
+            return false;
+        }
     }
 }
