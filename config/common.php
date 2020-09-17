@@ -11,7 +11,6 @@ use Spiral\Database\DatabaseManager;
 use Spiral\Database\DatabaseProviderInterface;
 use Vjik\Yii2\Cycle\Exception\SchemaWasNotProvidedException;
 use Vjik\Yii2\Cycle\Factory\ContainerFactory;
-use Vjik\Yii2\Cycle\Factory\CycleDynamicFactory;
 use Vjik\Yii2\Cycle\Factory\DbalFactory;
 use Vjik\Yii2\Cycle\Factory\OrmFactory;
 use Vjik\Yii2\Cycle\Schema\Conveyor\AnnotatedSchemaConveyor;
@@ -42,7 +41,7 @@ return [
         return new Factory(
             $container->get(DatabaseManager::class),
             null,
-            new CycleDynamicFactory($container),
+            null,
             ContainerFactory::make($container)
         );
     },

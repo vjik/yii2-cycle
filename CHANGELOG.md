@@ -1,3 +1,7 @@
+## 0.3.0 — 17.09.2020
+
+Remove CycleDynamicFactory.
+
 ## 0.2.0 — 10.09.2020
 
 Add CycleDynamicFactory.
