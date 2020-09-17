@@ -1,9 +1,11 @@
 # phpstorm project files
-.idea
+/.idea
 
 # composer
 /vendor
 /composer.lock
 
 # phpunit
-.phpunit.result.cache
+/phpunit.phar
+/phpunit.xml
+/.phpunit.result.cache
