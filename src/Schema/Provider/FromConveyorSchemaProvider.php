@@ -12,7 +12,7 @@ use Spiral\Database\DatabaseProviderInterface;
 use Vjik\Yii2\Cycle\Schema\SchemaConveyorInterface;
 use Vjik\Yii2\Cycle\Schema\SchemaProviderInterface;
 
-class FromConveyorSchemaProvider implements SchemaProviderInterface
+final class FromConveyorSchemaProvider implements SchemaProviderInterface
 {
 
     /**
