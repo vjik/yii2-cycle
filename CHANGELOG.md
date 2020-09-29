@@ -1,3 +1,7 @@
+## 0.4.0 — 29.09.2020
+
+Add FromFilesSchemaProvider.
+
 ## 0.3.0 — 17.09.2020
 
 Remove CycleDynamicFactory.
