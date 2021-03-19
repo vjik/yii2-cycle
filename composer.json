@@ -1,7 +1,6 @@
 {
     "name": "vjik/yii2-cycle",
     "description": "Yii2 Cycle ORM support",
-    "version": "0.4.0",
     "type": "library",
     "keywords": [
         "yii2",
@@ -24,7 +23,7 @@
         "php": "^7.2",
         "cycle/annotated": "^2.0",
         "cycle/orm": "^1.2",
-        "vjik/yii2-psr-container-proxy": "^1.0",
+        "vjik/yii2-psr-container-proxy": "^1.0|^2.0",
         "yiisoft/yii2": "^2.0"
     },
     "require-dev": {
