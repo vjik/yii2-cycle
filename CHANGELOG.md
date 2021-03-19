@@ -1,3 +1,7 @@
+## 0.4.1 — 19.03.2021
+
+Add support `vjik/yii2-psr-container-proxy` version 2.
+
 ## 0.4.0 — 29.09.2020
 
 Add FromFilesSchemaProvider.
