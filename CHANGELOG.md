@@ -1,3 +1,7 @@
+## 0.4.2 — 19.11.2026
+
+Add support PHP 8.0 – 8.6.
+
 ## 0.4.1 — 19.03.2021
 
 Add support `vjik/yii2-psr-container-proxy` version 2.

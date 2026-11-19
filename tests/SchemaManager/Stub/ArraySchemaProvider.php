@@ -9,7 +9,7 @@ use Vjik\Yii2\Cycle\Schema\SchemaProviderInterface;
 final class ArraySchemaProvider implements SchemaProviderInterface
 {
     protected $schema;
-    public function __construct(array $schema = null)
+    public function __construct(?array $schema = null)
     {
         $this->schema = $schema;
     }
