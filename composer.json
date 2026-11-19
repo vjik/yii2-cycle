@@ -20,7 +20,7 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "php": "^7.2",
+        "php": "^7.2|^8.0",
         "cycle/annotated": "^2.0",
         "cycle/orm": "^1.2",
         "vjik/yii2-psr-container-proxy": "^1.0|^2.0",
@@ -48,7 +48,10 @@
         ]
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
     },
     "repositories": [
         {

@@ -18,7 +18,7 @@ class FakeContainer implements ContainerInterface
      * @param array $definitions
      * @param null|Closure $factory Should be closure that works like ContainerInterface::get(string $id): mixed
      */
-    public function __construct(array $definitions = [], Closure $factory = null)
+    public function __construct(array $definitions = [], ?Closure $factory = null)
     {
         $this->definitions = $definitions;
         $this->factory = $factory ??
@@ -27,6 +27,10 @@ class FakeContainer implements ContainerInterface
             };
     }
 
+    /**
+     * @param string $id
+     * @return mixed
+     */
     public function get($id)
     {
         if (!array_key_exists($id, $this->definitions)) {
@@ -35,7 +39,10 @@ class FakeContainer implements ContainerInterface
         return $this->definitions[$id];
     }
 
-    public function has($id)
+    /**
+     * @param string $id
+     */
+    public function has($id): bool
     {
         if (array_key_exists($id, $this->definitions)) {
             return true;
